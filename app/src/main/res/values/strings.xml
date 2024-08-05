@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Git Explorer</string>
+    <string name="git_details_title">Git Detail</string>
+</resources>
