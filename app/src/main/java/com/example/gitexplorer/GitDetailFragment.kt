@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.gitexplorer.data.source.model.response.GithubRepoResp
 import com.example.gitexplorer.databinding.FragmentGitDetailBinding
 import com.example.gitexplorer.viewmodels.GitDetailScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * Created by Joseph Cui on 2024-08-03.
@@ -28,7 +31,20 @@ class GitDetailFragment : Fragment() {
             R.layout.fragment_git_detail,
             container,
             false
-        )
+        ).apply {
+
+            lifecycleScope.launch {
+                viewModel.gitRepo.collect{ gitrepo -> repo = gitrepo}
+            }
+        }
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val gitrepo = arguments?.getParcelable<GithubRepoResp>("gitrepo")
+
+        viewModel.onCreated(gitrepo)
+    }
+
 }

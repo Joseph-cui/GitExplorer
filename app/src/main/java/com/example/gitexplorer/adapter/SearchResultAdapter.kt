@@ -49,7 +49,7 @@ class SearchResultAdapter: ListAdapter<GithubRepoResp, RecyclerView.ViewHolder>(
             view: View
         ) {
             val direction =
-                SearchFragmentDirections.actionSearchFragmentToGitDetailFragment(git.name)
+                SearchFragmentDirections.actionSearchFragmentToGitDetailFragment(git)
             view.findNavController().navigate(direction)
         }
 

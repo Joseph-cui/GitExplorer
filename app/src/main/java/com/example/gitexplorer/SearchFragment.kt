@@ -1,9 +1,11 @@
 package com.example.gitexplorer
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -44,6 +46,8 @@ class SearchFragment: Fragment() {
             searchButton.setOnClickListener {
                 val userId = gitSearchId.text?.trim().toString()
                 viewModel.searchUser(userId)
+                val keyboard = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                keyboard.hideSoftInputFromWindow(view?.windowToken, 0)
             }
 
             lifecycleScope.launch {

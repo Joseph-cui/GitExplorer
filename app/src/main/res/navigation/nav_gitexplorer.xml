@@ -26,8 +26,10 @@
             tools:layout="@layout/fragment_git_detail">
 
             <argument
-                android:name="git"
-                app:argType="string" />
+                android:name="gitrepo"
+                app:argType="com.example.gitexplorer.data.source.model.response.GithubRepoResp"
+                android:defaultValue="@null"
+                app:nullable="true"/>
         </fragment>
 
 </navigation>
