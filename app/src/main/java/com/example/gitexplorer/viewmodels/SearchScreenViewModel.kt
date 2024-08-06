@@ -26,8 +26,16 @@ class SearchScreenViewModel  @Inject constructor(
 
     fun searchUser(userId: String) {
         viewModelScope.launch {
-            _gitUser.emit(repository.getUser(userId))
-            _gitRepo.emit(repository.getRepo(userId))
+            try {
+                _gitUser.emit(repository.getUser(userId))
+                _gitRepo.emit(repository.getRepo(userId))
+            } catch (e: Exception) {
+                //TODO show error message
+
+                //clear last search result
+                _gitUser.emit(null)
+                _gitRepo.emit(ArrayList())
+            }
         }
     }
 
