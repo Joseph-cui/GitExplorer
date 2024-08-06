@@ -177,6 +177,10 @@ dependencies {
     androidTestImplementation "androidx.appcompat:appcompat:$appCompatVersion"
     androidTestImplementation "com.google.android.material:material:$materialVersion"
 
+    def fragment_version = "1.8.2"
+    debugImplementation("androidx.fragment:fragment-testing-manifest:$fragment_version")
+    debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
+
 }
 
 hilt {
